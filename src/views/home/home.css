@@ -1,0 +1,14 @@
+*{
+  margin: 0;
+  padding: 0;
+  background-color: #C5DFF8;
+}
+
+.board {
+  margin: 10px;
+  height: 95vh;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: 25px; /* Espacio entre los elementos */
+}
