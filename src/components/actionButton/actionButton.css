@@ -3,6 +3,10 @@
 }
 .playing{
   background-color: #1B6B93;
+  font-size: 25px;
+}
+.playing h1{
+  font-size: 60px;
 }
 .restartGame{
   background-color: #001C30;

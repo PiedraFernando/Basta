@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {LetterButton} from '../../components/letterButton';
-import { ActionButton } from '../../components/actionButton';
-import "./home.css"
+import {ActionButton} from '../../components/actionButton';
+import './home.css';
 const defaultLetters = [
   {
     name: 'A',
@@ -117,18 +117,48 @@ const defaultLetters = [
 export function Home() {
   const [letters, setLetters] = useState(defaultLetters);
   const [gameStatus, setGameStatus] = useState('beforPlay');
+  const [time, setTime] = useState(20);
+  const [intervalGame, setIntervalGame] = useState();
+  const counter = () => {
+    setIntervalGame(
+      setInterval(() => {
+        setTime((last) => {
+          return last - 1;
+        });
+      }, 1000)
+    );
+  }
   const continueGame = () => {
-    setGameStatus('playing')
-  }
+    setGameStatus('playing');
+    counter()
+  };
   const retartGame = () => {
-    setGameStatus('beforPlay')
-  }
+    setGameStatus('beforPlay');
+    setLetters(defaultLetters);
+    clearInterval(intervalGame)
+    setTime(20)
+  };
+  const pauseGame = () => {
+    setGameStatus('pause');
+    clearInterval(intervalGame)
+  };
+  const startGame = () => {
+    setGameStatus('playing');
+    setLetters(defaultLetters);
+    counter()
+  };
   return (
-    <div className='board'>
+    <div className="board">
       {letters.map((letter) => {
-        return <LetterButton letter={letter} letters={letters} setLetters={setLetters} key={letter.name}>{letter.name}</LetterButton>;
+        return (
+          <LetterButton setTime={setTime} gameStatus={gameStatus} letter={letter} letters={letters} setLetters={setLetters} key={letter.name}>
+            {letter.name}
+          </LetterButton>
+        );
       })}
-      <ActionButton gameStatus={gameStatus} setGameStatus={setGameStatus} continueGame={continueGame} retartGame={retartGame}>O</ActionButton>
+      <ActionButton time={time} gameStatus={gameStatus} continueGame={continueGame} retartGame={retartGame} pauseGame={pauseGame} startGame={startGame}>
+        O
+      </ActionButton>
     </div>
   );
 }
