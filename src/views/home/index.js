@@ -116,14 +116,19 @@ const defaultLetters = [
 
 export function Home() {
   const [letters, setLetters] = useState(defaultLetters);
-  const [status, setStatus] = useState('pause');
-
+  const [gameStatus, setGameStatus] = useState('beforPlay');
+  const continueGame = () => {
+    setGameStatus('playing')
+  }
+  const retartGame = () => {
+    setGameStatus('beforPlay')
+  }
   return (
     <div className='board'>
       {letters.map((letter) => {
         return <LetterButton letter={letter} letters={letters} setLetters={setLetters} key={letter.name}>{letter.name}</LetterButton>;
       })}
-      <ActionButton status={status} setStatus={setStatus}>O</ActionButton>
+      <ActionButton gameStatus={gameStatus} setGameStatus={setGameStatus} continueGame={continueGame} retartGame={retartGame}>O</ActionButton>
     </div>
   );
 }
