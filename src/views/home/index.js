@@ -134,6 +134,7 @@ export function Home() {
   };
   const continueGame = () => {
     setGameStatus('playing');
+    setTime(20);
     counter();
   };
   const retartGame = () => {
@@ -146,6 +147,9 @@ export function Home() {
     setGameStatus('pause');
     clearInterval(intervalGame);
   };
+  if(time===0){
+    lostGame()
+  }
   const lostGame = () =>{
     wrong.play()
     setGameStatus('pause');
