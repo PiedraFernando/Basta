@@ -5,6 +5,11 @@
   background-color: #1B6B93;
   font-size: 25px;
 }
+.bgColor{
+  background-color: #164B60;
+  border-radius: 5px;
+  padding: 5px;
+}
 .playing h1{
   font-size: 60px;
 }

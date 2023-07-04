@@ -10,7 +10,7 @@ export function ActionButton(props) {
     <button className="button playing" onClick={props.pauseGame}>
       <div>
         <h1>{props.time}s</h1>
-        <FaPause />
+        <FaPause className='bgColor'/>
       </div>
     </button>
   );
