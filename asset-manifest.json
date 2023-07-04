@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Basta/static/css/main.dc6696d1.css",
+    "main.js": "/Basta/static/js/main.8b2449f6.js",
+    "static/js/787.2265704f.chunk.js": "/Basta/static/js/787.2265704f.chunk.js",
+    "index.html": "/Basta/index.html",
+    "main.dc6696d1.css.map": "/Basta/static/css/main.dc6696d1.css.map",
+    "main.8b2449f6.js.map": "/Basta/static/js/main.8b2449f6.js.map",
+    "787.2265704f.chunk.js.map": "/Basta/static/js/787.2265704f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc6696d1.css",
+    "static/js/main.8b2449f6.js"
+  ]
+}
