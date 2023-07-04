@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {LetterButton} from '../../components/letterButton';
 import {ActionButton} from '../../components/actionButton';
 import './home.css';
+
 const defaultLetters = [
   {
     name: 'A',
@@ -115,6 +116,9 @@ const defaultLetters = [
 ];
 
 export function Home() {
+  const [start] = useState(new Audio('/sounds/start.wav'));
+  const [wrong] = useState(new Audio('/sounds/wrong.mp3'));
+  const [success] = useState(new Audio('/sounds/success.wav'));
   const [letters, setLetters] = useState(defaultLetters);
   const [gameStatus, setGameStatus] = useState('beforPlay');
   const [time, setTime] = useState(20);
@@ -127,31 +131,40 @@ export function Home() {
         });
       }, 1000)
     );
-  }
+  };
   const continueGame = () => {
     setGameStatus('playing');
-    counter()
+    counter();
   };
   const retartGame = () => {
     setGameStatus('beforPlay');
     setLetters(defaultLetters);
-    clearInterval(intervalGame)
-    setTime(20)
+    clearInterval(intervalGame);
+    setTime(20);
   };
   const pauseGame = () => {
     setGameStatus('pause');
-    clearInterval(intervalGame)
+    clearInterval(intervalGame);
   };
+  const lostGame = () =>{
+    wrong.play()
+    setGameStatus('pause');
+    clearInterval(intervalGame);
+  }
+  const correct = () =>{
+    success.play()
+  }
   const startGame = () => {
     setGameStatus('playing');
     setLetters(defaultLetters);
-    counter()
+    start.play()
+    counter();
   };
   return (
     <div className="board">
       {letters.map((letter) => {
         return (
-          <LetterButton setTime={setTime} gameStatus={gameStatus} letter={letter} letters={letters} setLetters={setLetters} key={letter.name}>
+          <LetterButton setTime={setTime} correct={correct} lostGame={lostGame} gameStatus={gameStatus} letter={letter} letters={letters} setLetters={setLetters} key={letter.name}>
             {letter.name}
           </LetterButton>
         );
